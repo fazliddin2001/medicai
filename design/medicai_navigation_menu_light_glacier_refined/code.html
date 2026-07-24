@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>MedicAI Navigation</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+                "on-error-container": "#ffb3b3",
+                "tertiary-container": "#3d2060",
+                "surface-dim": "#0f1524",
+                "surface-container-low": "#111828",
+                "on-surface": "#0f1524", /* Darker for light theme simulation */
+                "on-primary-container": "#c8eaff",
+                "primary-fixed-dim": "#7dd3fc",
+                "on-background": "#0f1524",
+                "on-secondary-fixed-variant": "#2a4a5e",
+                "outline": "#4a6070",
+                "tertiary-fixed": "#e8d0ff",
+                "secondary": "#88b4cc",
+                "secondary-fixed-dim": "#88b4cc",
+                "tertiary": "#c8a0f0",
+                "on-tertiary-fixed": "#1a002e",
+                "background": "#f8fafc", /* Light background */
+                "surface-container-lowest": "#ffffff",
+                "on-primary-fixed": "#001f2e",
+                "secondary-container": "#1a3a4e",
+                "on-primary-fixed-variant": "#004d73",
+                "on-secondary-fixed": "#0d1f2b",
+                "inverse-surface": "#e0e8f0",
+                "error": "#ff6b6b",
+                "surface-tint": "#7dd3fc",
+                "tertiary-fixed-dim": "#c8a0f0",
+                "on-secondary-container": "#c0d8e8",
+                "surface-container-high": "#f1f5f9",
+                "on-tertiary": "#1a002e",
+                "on-tertiary-container": "#e8d0ff",
+                "surface-variant": "#e2e8f0",
+                "primary-fixed": "#c8eaff",
+                "surface-container-highest": "#e2e8f0",
+                "primary": "#0ea5e9", /* Stronger ice blue */
+                "outline-variant": "#cbd5e1",
+                "surface-bright": "#ffffff",
+                "surface": "#ffffff",
+                "secondary-fixed": "#c0d8e8",
+                "on-tertiary-fixed-variant": "#4d2a73",
+                "inverse-primary": "#0a4c6e",
+                "inverse-on-surface": "#0a0e1a",
+                "error-container": "#3d1414",
+                "primary-container": "#e0f2fe",
+                "on-error": "#1a0000",
+                "on-surface-variant": "#475569", /* Darker variant */
+                "on-secondary": "#001f2e",
+                "on-primary": "#ffffff",
+                "surface-container": "#f8fafc"
+        },
+        "borderRadius": {
+                "DEFAULT": "0.5rem",
+                "lg": "1rem",
+                "xl": "1.5rem",
+                "full": "9999px"
+        },
+        "spacing": {},
+        "fontFamily": {
+                "headline": [
+                        "Inter"
+                ],
+                "display": [
+                        "Inter"
+                ],
+                "body": [
+                        "Inter"
+                ],
+                "label": [
+                        "Inter"
+                ]
+        },
+        "fontSize": {}
+},
+    },
+  }
+</script>
+<style>
+        body {
+            background-color: theme('colors.background');
+            color: theme('colors.on-background');
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            overflow-x: hidden;
+            /* Placeholder background to simulate the page content behind the glass nav */
+            background-image: radial-gradient(circle at top right, rgba(14, 165, 233, 0.15), transparent 50%),
+                              radial-gradient(circle at bottom left, rgba(200, 160, 240, 0.15), transparent 50%);
+            background-attachment: fixed;
+        }
+
+        /* Glassmorphism utilities */
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border-right: 1px solid rgba(255, 255, 255, 0.8);
+        }
+        
+        .glass-item-hover:hover {
+            background: rgba(14, 165, 233, 0.1);
+            box-shadow: inset 0 0 10px rgba(14, 165, 233, 0.05);
+        }
+
+        .glass-active {
+            background: rgba(14, 165, 233, 0.15);
+            border-left: 3px solid theme('colors.primary');
+            box-shadow: inset 0 0 20px rgba(14, 165, 233, 0.1);
+        }
+
+        .luminous-text {
+            text-shadow: 0 0 10px rgba(14, 165, 233, 0.2);
+        }
+
+        /* Custom Scrollbar for Nav */
+        ::-webkit-scrollbar {
+            width: 4px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(14, 165, 233, 0.3);
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(14, 165, 233, 0.5);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="antialiased min-h-screen flex items-center justify-center p-4">
+<!-- Demonstration Container (representing the viewport) -->
+<div class="relative w-full max-w-4xl h-[800px] overflow-hidden rounded-2xl border border-white/40 shadow-2xl bg-white/30 backdrop-blur-sm" style="box-shadow: 0 25px 50px -12px rgba(14, 165, 233, 0.15), 0 0 40px rgba(14, 165, 233, 0.1);">
+<!-- Background Content Simulation -->
+<div class="absolute inset-0 p-12 pt-24 text-center opacity-70 pointer-events-none flex flex-col items-center justify-center">
+<span class="material-symbols-outlined text-9xl text-primary/30 mb-8" style="font-variation-settings: 'wght' 200;">medical_information</span>
+<h1 class="text-4xl font-headline font-semibold text-primary/70 tracking-wider">MedicAI Workspace</h1>
+<p class="mt-4 text-on-surface-variant max-w-md mx-auto">Open the navigation menu to access patient records, analysis models, and account settings.</p>
+</div>
+<!-- NavigationDrawer Component (From JSON & Prompt) -->
+<nav aria-label="Main Navigation" class="fixed inset-y-0 left-0 z-[60] flex flex-col h-full w-80 rounded-r-xl glass-panel shadow-[10px_0_30px_rgba(14,165,233,0.1)] transform transition-transform duration-500 ease-out translate-x-0">
+<!-- Header Section (Profile) -->
+<div class="p-6 border-b border-primary/20 flex flex-col items-start bg-gradient-to-b from-white/40 to-transparent">
+<div class="flex items-center gap-4 mb-4">
+<div class="relative w-14 h-14 rounded-full overflow-hidden border-2 border-primary/40 shadow-[0_0_15px_rgba(14,165,233,0.3)] bg-white">
+<img alt="User profile photo" class="w-full h-full object-cover" data-alt="A macro photography style close up of a highly detailed, abstract crystalline structure resembling ice or medical glass. The lighting is cool, ethereal, and cinematic, emphasizing deep dark navy blues and glowing ice-blue accents, fitting a premium, mysterious aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDDRPIr0dIitAszFE6Qn_8oslX-Xsw5gIAQtfVm8jOJeCvmk81yHIdhQCDN0Xfy3Pl_iBFMWGhkXcQlME-jOmDIWrQwIXD1piqQ8tKwDhujvxQAXtilJXF12iRd4Q4IqblYDZq-HIcM_Uz0aME8Lsc3Xy2vFLbNSTd3w9dIh8tMq7qc60qUEy-_0S9rTeZJUuqjJ2tNMb-cvKe0J3vRqeBS4pTGCTJPMDnGTuzayAQYji5h-xsLimtFsnnfFhR0ME439TJe_DE0gNA"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent"></div>
+</div>
+<div>
+<h2 class="font-headline text-lg font-semibold text-slate-900 tracking-wide luminous-text">User Name</h2>
+<div class="flex items-center gap-1.5 mt-1">
+<span class="w-2 h-2 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.4)]"></span>
+<span class="text-xs text-slate-600 font-medium">Privacy Level: High</span>
+</div>
+</div>
+</div>
+<div class="w-full bg-white/60 rounded-lg p-3 border border-white/50 shadow-sm backdrop-blur-md flex items-center justify-between mt-2">
+<span class="text-xs text-slate-700 flex items-center gap-1.5 font-medium">
+<span class="material-symbols-outlined text-[14px]">memory</span>
+                        Local Model: V1.2
+                    </span>
+<span class="material-symbols-outlined text-primary/90 text-[16px] cursor-pointer hover:text-primary transition-colors">sync</span>
+</div>
+</div>
+<!-- Navigation Links -->
+<div class="flex-1 overflow-y-auto py-6 px-4 space-y-2">
+<!-- Chat History (Active based on prompt order/context) -->
+<a class="flex items-center gap-4 px-4 py-3.5 rounded-xl glass-active text-primary transition-all duration-300 group" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">history</span>
+<span class="font-body text-sm font-semibold tracking-wide">Chat History</span>
+<span class="material-symbols-outlined ml-auto opacity-0 group-hover:opacity-100 transition-opacity text-sm">arrow_forward_ios</span>
+</a>
+<!-- Model Management -->
+<a class="flex items-center gap-4 px-4 py-3.5 rounded-xl text-slate-600 glass-item-hover transition-all duration-300 group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary transition-colors">cloud_download</span>
+<span class="font-body text-sm font-medium group-hover:text-slate-900 transition-colors">Model Management</span>
+</a>
+<!-- Language Settings (Added from prompt) -->
+<a class="flex items-center gap-4 px-4 py-3.5 rounded-xl text-slate-600 glass-item-hover transition-all duration-300 group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary transition-colors">language</span>
+<span class="font-body text-sm font-medium group-hover:text-slate-900 transition-colors">Language Settings</span>
+</a>
+<!-- Account -->
+<a class="flex items-center gap-4 px-4 py-3.5 rounded-xl text-slate-600 glass-item-hover transition-all duration-300 group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary transition-colors">account_circle</span>
+<span class="font-body text-sm font-medium group-hover:text-slate-900 transition-colors">Account</span>
+</a>
+</div>
+<!-- Footer Section -->
+<div class="p-6 border-t border-primary/20 mt-auto bg-gradient-to-t from-white/40 to-transparent">
+<a class="flex items-center gap-3 text-slate-500 hover:text-primary transition-colors text-sm font-medium" href="#">
+<span class="material-symbols-outlined text-[18px]">policy</span>
+                    Privacy Policy
+                </a>
+</div>
+<!-- Decorative edge glow -->
+<div class="absolute right-0 top-0 bottom-0 w-[1px] bg-gradient-to-b from-transparent via-primary/40 to-transparent"></div>
+</nav>
+<!-- Overlay to simulate open drawer state -->
+<div class="absolute inset-0 bg-white/20 backdrop-blur-[2px] z-50 pointer-events-none opacity-100 transition-opacity duration-500"></div>
+</div>
+<script>
+        // Simple script to handle hover effects that might be complex for pure CSS given the glassmorphism theme
+        document.querySelectorAll('a').forEach(link => {
+            link.addEventListener('mouseenter', function() {
+                if(!this.classList.contains('glass-active')) {
+                    const icon = this.querySelector('.material-symbols-outlined');
+                    if(icon) {
+                        icon.style.transform = 'scale(1.1)';
+                        icon.style.transition = 'transform 0.2s cubic-bezier(0.4, 0, 0.2, 1)';
+                    }
+                }
+            });
+            
+            link.addEventListener('mouseleave', function() {
+                const icon = this.querySelector('.material-symbols-outlined');
+                if(icon) {
+                    icon.style.transform = 'scale(1)';
+                }
+            });
+        });
+    </script>
+</body></html>

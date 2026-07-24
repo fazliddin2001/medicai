@@ -1,0 +1,294 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>MedicAI - Web API Chat</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;family=JetBrains+Mono:wght@600&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+                "primary-fixed-dim": "#7dd3fc",
+                "tertiary": "#c8a0f0",
+                "outline-variant": "#2a3a48",
+                "on-surface-variant": "#a0b4c4",
+                "surface-container-low": "#111828",
+                "tertiary-container": "#3d2060",
+                "on-secondary-container": "#c0d8e8",
+                "inverse-primary": "#0a4c6e",
+                "on-surface": "#e0e8f0",
+                "on-background": "#e0e8f0",
+                "on-primary-container": "#c8eaff",
+                "on-error": "#1a0000",
+                "on-primary": "#001f2e",
+                "surface-container-highest": "#202c42",
+                "on-primary-fixed-variant": "#004d73",
+                "on-error-container": "#ffb3b3",
+                "on-tertiary-fixed": "#1a002e",
+                "error": "#ff6b6b",
+                "on-secondary": "#001f2e",
+                "surface-container": "#141c2e",
+                "surface-dim": "#0f1524",
+                "outline": "#4a6070",
+                "primary-fixed": "#c8eaff",
+                "on-tertiary-fixed-variant": "#4d2a73",
+                "secondary": "#88b4cc",
+                "surface-variant": "#1a2438",
+                "on-secondary-fixed-variant": "#2a4a5e",
+                "surface-container-high": "#1a2438",
+                "secondary-fixed": "#c0d8e8",
+                "on-secondary-fixed": "#0d1f2b",
+                "surface-container-lowest": "#0a0e1a",
+                "on-primary-fixed": "#001f2e",
+                "secondary-fixed-dim": "#88b4cc",
+                "tertiary-fixed": "#e8d0ff",
+                "surface-tint": "#7dd3fc",
+                "surface": "#0f1524",
+                "surface-bright": "#1a2438",
+                "primary": "#7dd3fc",
+                "on-tertiary": "#1a002e",
+                "inverse-surface": "#e0e8f0",
+                "secondary-container": "#1a3a4e",
+                "background": "#0a0e1a",
+                "error-container": "#3d1414",
+                "tertiary-fixed-dim": "#c8a0f0",
+                "on-tertiary-container": "#e8d0ff",
+                "primary-container": "#0e4d6e",
+                "inverse-on-surface": "#0a0e1a"
+        },
+        "borderRadius": {
+                "DEFAULT": "0.5rem",
+                "lg": "1rem",
+                "xl": "1.5rem",
+                "full": "9999px"
+        },
+        "spacing": {
+                "margin-mobile": "1rem",
+                "gutter": "1.5rem",
+                "container-max": "1280px",
+                "stack-sm": "0.5rem",
+                "stack-md": "1rem",
+                "stack-lg": "2rem"
+        },
+        "fontFamily": {
+                "headline": [
+                        "Inter"
+                ],
+                "display": [
+                        "Inter"
+                ],
+                "body": [
+                        "Inter"
+                ],
+                "label": [
+                        "Inter"
+                ],
+                "label-caps": [
+                        "JetBrains Mono"
+                ],
+                "button-text": [
+                        "Inter"
+                ],
+                "headline-md": [
+                        "Inter"
+                ],
+                "headline-lg": [
+                        "Inter"
+                ],
+                "headline-lg-mobile": [
+                        "Inter"
+                ],
+                "body-sm": [
+                        "Inter"
+                ],
+                "body-lg": [
+                        "Inter"
+                ]
+        },
+        "fontSize": {
+                "label-caps": [
+                        "12px",
+                        {
+                                "lineHeight": "16px",
+                                "letterSpacing": "0.05em",
+                                "fontWeight": "600"
+                        }
+                ],
+                "button-text": [
+                        "14px",
+                        {
+                                "lineHeight": "20px",
+                                "fontWeight": "600"
+                        }
+                ],
+                "headline-md": [
+                        "20px",
+                        {
+                                "lineHeight": "28px",
+                                "fontWeight": "600"
+                        }
+                ],
+                "headline-lg": [
+                        "32px",
+                        {
+                                "lineHeight": "40px",
+                                "letterSpacing": "-0.02em",
+                                "fontWeight": "700"
+                        }
+                ],
+                "headline-lg-mobile": [
+                        "24px",
+                        {
+                                "lineHeight": "32px",
+                                "letterSpacing": "-0.01em",
+                                "fontWeight": "700"
+                        }
+                ],
+                "body-sm": [
+                        "14px",
+                        {
+                                "lineHeight": "20px",
+                                "fontWeight": "400"
+                        }
+                ],
+                "body-lg": [
+                        "16px",
+                        {
+                                "lineHeight": "24px",
+                                "fontWeight": "400"
+                        }
+                ]
+        }
+},
+    },
+  }
+</script>
+<style>
+        /* Ambient Background */
+        body {
+            background-color: #f0f9ff; /* Light ice-blue background */
+        }
+        
+        /* Chat scrollbar hiding */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        /* Subtle focus rings for input */
+        .input-cloud-focus:focus-within {
+            border-color: #38bdf8;
+            box-shadow: 0 0 0 1px #38bdf8;
+        }
+        
+        /* Glassmorphism Light */
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+        }
+
+        /* Glassmorphism Blue (User) */
+        .glass-panel-blue {
+            background: rgba(186, 230, 253, 0.4);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(186, 230, 253, 0.5);
+        }
+      </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="flex flex-col h-screen overflow-hidden text-slate-800 font-body">
+<!-- TopAppBar -->
+<header class="glass-panel border-b border-white/50 flex justify-between items-center px-margin-mobile w-full h-16 shrink-0 shadow-sm z-20">
+<button class="text-sky-600 hover:bg-white/50 transition-colors duration-200 p-2 rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">arrow_back</span>
+</button>
+<div class="flex items-center gap-2">
+<img alt="MedicAI Logo" class="w-8 h-8 rounded-full border border-sky-200 bg-white object-cover" src="https://lh3.googleusercontent.com/aida/AP1WRLuAWVq4CC3occZwJF3b63_902ebDuKrnYzCnsrVTL2B1Yh0aKJDcVJMQW-MM7pU27yw98qJMKeU7FQY69hspU3ugR7UMFEMLeXKxEp34PmhhyGxGXFemJUkNFh6jG0EeKi5wcKlk1u94fUXSfRaTTbY1-NS2aKC0u9hl1tq1448bFRf-bZOKGb4se5hDYvG4Ny8WwBv17vdBk5MVKEToV-8etw7yhObz7Q-vqft7SWmcbaN2hlqtfQ_OQ">
+<div class="font-headline text-headline-md font-bold text-sky-700">
+                MedicAI
+    </div>
+</div>
+<button class="text-sky-600 hover:bg-white/50 transition-colors duration-200 p-2 rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">language</span>
+</button>
+</header>
+<!-- Cloud Banner -->
+<div class="glass-panel border-b border-sky-100 px-4 py-2 flex items-center justify-center gap-2 shrink-0 shadow-[0_0_15px_rgba(56,189,248,0.2)] z-10">
+<span class="material-symbols-outlined text-sky-500 text-sm drop-shadow-[0_0_8px_rgba(56,189,248,0.8)]" style="font-variation-settings: 'FILL' 1;">cloud</span>
+<span class="font-label-caps text-label-caps text-sky-600 uppercase tracking-wider drop-shadow-[0_0_8px_rgba(56,189,248,0.4)]">⚡ Cloud API Mode</span>
+</div>
+<!-- Chat Canvas -->
+<main class="flex-1 overflow-y-auto no-scrollbar relative w-full flex flex-col items-center pb-24">
+<!-- Max width container for chat -->
+<div class="w-full max-w-[800px] px-margin-mobile md:px-gutter py-stack-lg flex flex-col gap-6">
+<!-- System Message / Intro -->
+<div class="flex justify-center mb-4">
+<div class="glass-panel rounded-full px-4 py-1.5 flex items-center gap-2 shadow-sm">
+<span class="material-symbols-outlined text-sky-500 text-sm" style="font-variation-settings: 'FILL' 1;">info</span>
+<span class="font-body-sm text-body-sm text-slate-500">Connected to Cloud Inference Engine. Privacy controls relaxed.</span>
+</div>
+</div>
+<!-- User Message -->
+<div class="flex w-full justify-end">
+<div class="max-w-[85%] md:max-w-[70%] glass-panel-blue text-sky-900 rounded-2xl rounded-tr-sm px-4 py-3 shadow-sm">
+<p class="font-body-lg text-body-lg">Summarize the Q3 financial report, focusing specifically on operational overhead versus projected revenue growth across the APAC region.</p>
+</div>
+</div>
+<!-- AI Response -->
+<div class="flex w-full justify-start gap-3 items-end">
+<div class="w-8 h-8 rounded-full glass-panel flex items-center justify-center shrink-0 mb-1 shadow-sm">
+<img alt="MedicAI Logo" class="w-6 h-6 object-cover" src="https://lh3.googleusercontent.com/aida/AP1WRLuAWVq4CC3occZwJF3b63_902ebDuKrnYzCnsrVTL2B1Yh0aKJDcVJMQW-MM7pU27yw98qJMKeU7FQY69hspU3ugR7UMFEMLeXKxEp34PmhhyGxGXFemJUkNFh6jG0EeKi5wcKlk1u94fUXSfRaTTbY1-NS2aKC0u9hl1tq1448bFRf-bZOKGb4se5hDYvG4Ny8WwBv17vdBk5MVKEToV-8etw7yhObz7Q-vqft7SWmcbaN2hlqtfQ_OQ">
+</div>
+<div class="max-w-[85%] md:max-w-[70%] glass-panel text-slate-700 rounded-2xl rounded-tl-sm px-5 py-4 shadow-sm flex flex-col gap-3">
+<p class="font-body-lg text-body-lg leading-relaxed">Here is a summary of the Q3 financial report focusing on operational overhead vs. projected revenue in the APAC region:</p>
+<div class="pl-4 border-l-2 border-sky-300 flex flex-col gap-2">
+<p class="font-body-sm text-body-sm text-slate-600"><strong class="text-slate-800 font-button-text">Operational Overhead:</strong> Increased by 14% year-over-year, primarily driven by logistics expansions in Singapore and Tokyo. New facility leases account for 8% of this jump.</p>
+<p class="font-body-sm text-body-sm text-slate-600"><strong class="text-slate-800 font-button-text">Projected Revenue Growth:</strong> Expected to hit 22% in Q4, outpacing overhead increases. This is largely due to the successful launch of the enterprise software tier in the Australian market.</p>
+</div>
+<p class="font-body-lg text-body-lg leading-relaxed">Overall, while overhead has expanded, the revenue projections indicate a strong net positive margin moving into the next fiscal year.</p>
+</div>
+</div>
+<!-- User Message -->
+<div class="flex w-full justify-end mt-4">
+<div class="max-w-[85%] md:max-w-[70%] glass-panel-blue text-sky-900 rounded-2xl rounded-tr-sm px-4 py-3 shadow-sm">
+<p class="font-body-lg text-body-lg">Can you generate a quick comparison table for that?</p>
+</div>
+</div>
+<!-- AI Response - Generating State -->
+<div class="flex w-full justify-start gap-3 items-center mt-2">
+<div class="w-8 h-8 rounded-full glass-panel flex items-center justify-center shrink-0 shadow-sm">
+<img alt="MedicAI Logo" class="w-6 h-6 object-cover animate-pulse" src="https://lh3.googleusercontent.com/aida/AP1WRLuAWVq4CC3occZwJF3b63_902ebDuKrnYzCnsrVTL2B1Yh0aKJDcVJMQW-MM7pU27yw98qJMKeU7FQY69hspU3ugR7UMFEMLeXKxEp34PmhhyGxGXFemJUkNFh6jG0EeKi5wcKlk1u94fUXSfRaTTbY1-NS2aKC0u9hl1tq1448bFRf-bZOKGb4se5hDYvG4Ny8WwBv17vdBk5MVKEToV-8etw7yhObz7Q-vqft7SWmcbaN2hlqtfQ_OQ">
+</div>
+<div class="glass-panel rounded-full px-4 py-2 shadow-sm flex items-center gap-2">
+<div class="w-2 h-2 bg-sky-400 rounded-full animate-bounce"></div>
+<div class="w-2 h-2 bg-sky-400 rounded-full animate-bounce" style="animation-delay: 0.1s"></div>
+<div class="w-2 h-2 bg-sky-400 rounded-full animate-bounce" style="animation-delay: 0.2s"></div>
+</div>
+</div><div class="flex w-full justify-end mt-4"><div class="max-w-[85%] md:max-w-[70%] glass-panel-blue text-sky-900 rounded-2xl rounded-tr-sm px-4 py-3 shadow-sm flex items-center gap-3"><span class="material-symbols-outlined text-sky-600">play_circle</span><div class="flex-1 h-8 flex items-center gap-1"><div class="w-1 h-4 bg-sky-400 rounded-full"></div><div class="w-1 h-6 bg-sky-500 rounded-full"></div><div class="w-1 h-3 bg-sky-400 rounded-full"></div><div class="w-1 h-5 bg-sky-500 rounded-full"></div><div class="w-1 h-7 bg-sky-600 rounded-full"></div><div class="w-1 h-4 bg-sky-400 rounded-full"></div><div class="w-1 h-6 bg-sky-500 rounded-full"></div><div class="w-1 h-3 bg-sky-400 rounded-full"></div></div><span class="text-body-sm font-label-caps">0:12</span></div></div>
+</div>
+</main>
+<!-- Bottom Input Area (Fixed) -->
+<div class="fixed bottom-0 left-0 w-full glass-panel border-t border-white/50 pb-safe pt-4 px-margin-mobile md:px-gutter z-30 flex justify-center">
+<div class="w-full max-w-[800px] relative input-cloud-focus rounded-2xl bg-white/80 border border-sky-100 shadow-sm transition-all duration-200 mb-4 md:mb-6"><div class="absolute left-2 bottom-2"><button class="text-sky-600 hover:bg-sky-100 p-2 rounded-xl transition-colors duration-200 flex items-center justify-center"><span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">add_circle</span></button></div>
+<textarea class="w-full bg-transparent border-none focus:ring-0 resize-none font-body-lg text-body-lg text-slate-800 placeholder:text-slate-400 p-4 pr-14 min-h-[60px] max-h-[120px] rounded-2xl rounded-br-none pl-14" placeholder="Message or record audio..." rows="1"></textarea>
+<div class="absolute right-2 bottom-2">
+<button class="bg-sky-500 hover:bg-sky-600 text-white p-2 rounded-xl shadow-md transition-colors duration-200 flex items-center justify-center"><span class="material-symbols-outlined" style="font-variation-settings: &quot;FILL&quot; 0;">mic</span></button>
+</div>
+</div>
+</div>
+
+
+</body></html>

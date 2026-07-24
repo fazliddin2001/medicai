@@ -1,0 +1,278 @@
+<!DOCTYPE html><html lang="en" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>MedicAI - Model Management</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;family=JetBrains+Mono:wght@600&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+                "surface-container-low": "#111828",
+                "surface-container-lowest": "#0a0e1a",
+                "tertiary-fixed": "#e8d0ff",
+                "surface-variant": "#1a2438",
+                "on-error": "#1a0000",
+                "error": "#ff6b6b",
+                "secondary-fixed": "#c0d8e8",
+                "tertiary-container": "#3d2060",
+                "inverse-primary": "#0a4c6e",
+                "tertiary-fixed-dim": "#c8a0f0",
+                "on-tertiary-fixed": "#1a002e",
+                "on-tertiary-container": "#e8d0ff",
+                "secondary": "#88b4cc",
+                "on-tertiary-fixed-variant": "#4d2a73",
+                "surface": "#0f1524",
+                "on-surface": "#e0e8f0",
+                "inverse-on-surface": "#0a0e1a",
+                "tertiary": "#c8a0f0",
+                "on-tertiary": "#1a002e",
+                "surface-bright": "#1a2438",
+                "primary-container": "#0e4d6e",
+                "error-container": "#3d1414",
+                "surface-container": "#141c2e",
+                "primary-fixed-dim": "#7dd3fc",
+                "on-surface-variant": "#a0b4c4",
+                "on-secondary-fixed": "#0d1f2b",
+                "surface-tint": "#7dd3fc",
+                "on-secondary-fixed-variant": "#2a4a5e",
+                "on-secondary-container": "#c0d8e8",
+                "on-primary": "#001f2e",
+                "inverse-surface": "#e0e8f0",
+                "on-secondary": "#001f2e",
+                "background": "#0a0e1a",
+                "on-primary-container": "#c8eaff",
+                "secondary-fixed-dim": "#88b4cc",
+                "primary-fixed": "#c8eaff",
+                "primary": "#7dd3fc",
+                "outline": "#4a6070",
+                "on-primary-fixed-variant": "#004d73",
+                "secondary-container": "#1a3a4e",
+                "on-background": "#e0e8f0",
+                "outline-variant": "#2a3a48",
+                "surface-container-high": "#1a2438",
+                "surface-container-highest": "#202c42",
+                "on-error-container": "#ffb3b3",
+                "on-primary-fixed": "#001f2e",
+                "surface-dim": "#0f1524"
+        },
+        "borderRadius": {
+                "DEFAULT": "0.5rem",
+                "lg": "1rem",
+                "xl": "1.5rem",
+                "full": "9999px"
+        },
+        "spacing": {
+            "margin-mobile": "1rem",
+            "gutter": "1.5rem",
+            "container-max": "1280px",
+            "stack-sm": "0.5rem",
+            "stack-md": "1rem",
+            "stack-lg": "2rem"
+        },
+        "fontFamily": {
+                "headline": [
+                        "Inter"
+                ],
+                "display": [
+                        "Inter"
+                ],
+                "body": [
+                        "Inter"
+                ],
+                "label": [
+                        "Inter"
+                ],
+                "label-caps": [
+                    "JetBrains Mono"
+                ],
+                "button-text": [
+                    "Inter"
+                ],
+                "headline-md": [
+                    "Inter"
+                ],
+                "headline-lg": [
+                    "Inter"
+                ],
+                "headline-lg-mobile": [
+                    "Inter"
+                ],
+                "body-sm": [
+                    "Inter"
+                ],
+                "body-lg": [
+                    "Inter"
+                ]
+        },
+        "fontSize": {
+            "label-caps": [
+                "12px",
+                {
+                    "lineHeight": "16px",
+                    "letterSpacing": "0.05em",
+                    "fontWeight": "600"
+                }
+            ],
+            "button-text": [
+                "14px",
+                {
+                    "lineHeight": "20px",
+                    "fontWeight": "600"
+                }
+            ],
+            "headline-md": [
+                "20px",
+                {
+                    "lineHeight": "28px",
+                    "fontWeight": "600"
+                }
+            ],
+            "headline-lg": [
+                "32px",
+                {
+                    "lineHeight": "40px",
+                    "letterSpacing": "-0.02em",
+                    "fontWeight": "700"
+                }
+            ],
+            "headline-lg-mobile": [
+                "24px",
+                {
+                    "lineHeight": "32px",
+                    "letterSpacing": "-0.01em",
+                    "fontWeight": "700"
+                }
+            ],
+            "body-sm": [
+                "14px",
+                {
+                    "lineHeight": "20px",
+                    "fontWeight": "400"
+                }
+            ],
+            "body-lg": [
+                "16px",
+                {
+                    "lineHeight": "24px",
+                    "fontWeight": "400"
+                }
+            ]
+        }
+},
+    },
+  }
+</script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .icon-fill {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-900 font-body-lg min-h-screen flex flex-col md:flex-row">
+<!-- TopAppBar (Mobile Only) -->
+<header class="md:hidden flex justify-between items-center px-margin-mobile w-full h-16 bg-white/70 backdrop-blur-2xl border-b border-slate-200/50 flat no shadows docked full-width top-0 z-50">
+<button class="text-slate-700 hover:bg-slate-100 transition-colors duration-200 p-2 rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined" data-icon="menu">menu</span>
+</button>
+<div class="flex items-center gap-2">
+<img alt="MedicAI Logo" class="w-8 h-8 rounded-full border border-slate-200 bg-white p-0.5 object-contain" src="https://lh3.googleusercontent.com/aida/AP1WRLuAWVq4CC3occZwJF3b63_902ebDuKrnYzCnsrVTL2B1Yh0aKJDcVJMQW-MM7pU27yw98qJMKeU7FQY69hspU3ugR7UMFEMLeXKxEp34PmhhyGxGXFemJUkNFh6jG0EeKi5wcKlk1u94fUXSfRaTTbY1-NS2aKC0u9hl1tq1448bFRf-bZOKGb4se5hDYvG4Ny8WwBv17vdBk5MVKEToV-8etw7yhObz7Q-vqft7SWmcbaN2hlqtfQ_OQ">
+<div class="font-headline-md text-headline-md font-bold text-slate-800">MedicAI</div>
+</div>
+<button class="text-slate-700 hover:bg-slate-100 transition-colors duration-200 p-2 rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined" data-icon="language">language</span>
+</button>
+</header>
+<!-- NavigationDrawer (Desktop Only) -->
+<aside class="hidden md:flex flex-col p-stack-md h-full w-80 rounded-r-xl shadow-lg bg-white/70 backdrop-blur-2xl border-r border-slate-200/50 fixed inset-y-0 left-0 z-[60] transition-all duration-300 ease-in-out">
+<div class="mb-stack-lg flex items-center gap-4">
+<img alt="User profile photo" class="w-12 h-12 rounded-full object-cover border-2 border-sky-100" data-alt="A professional headshot of a user in a well-lit, modern office environment. The lighting is soft and bright, casting subtle shadows that emphasize a corporate and modern aesthetic. The color palette focuses on whites, soft grays, and natural skin tones, aligning with a light-mode UI design. The mood is confident and reliable." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDweldZoPHGd9SRQd6j21Z7JjMNDXv7-jSc_RJqxOFuOmlTATvuTpdRdIYPj5F60WCwwAoa3dQ5Tz9RyMd0pzHQbyfe5toOnptmGzXXqzKOLRfejxLcR6-UDdXD15FPWYxgsabcz2-VWeiaSdo3xD35JAEHRvtEt7W7ca56sQmttZ2FiuxtcWxL-gC9_41tzwGmQAcxaNZIIYzs_CNKFjRFAVJkCjGcehn_43g0BF09CFblPE-GJLbkCPSdVRkZZaWiyyc6VUlas14">
+<div>
+<h2 class="font-headline-md text-headline-md text-slate-900 font-bold">User Name</h2>
+<p class="font-body-sm text-body-sm text-slate-600">Privacy Level: High</p>
+<p class="font-label-caps text-label-caps text-sky-600 mt-1">Local Model: V1.2</p>
+</div>
+</div>
+<nav class="flex-1 flex flex-col gap-2">
+<a class="flex items-center gap-3 px-4 py-3 rounded-full text-slate-600 hover:bg-slate-100 transition-colors duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="history">history</span>
+<span class="font-body-lg text-body-lg">Chat History</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-full bg-sky-50 text-sky-900 font-bold hover:bg-sky-100 transition-colors duration-200 border border-sky-200/50" href="#">
+<span class="material-symbols-outlined icon-fill" data-icon="Memory" data-weight="fill">cloud_download</span>
+<span class="font-body-lg text-body-lg">Model Management</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-full text-slate-600 hover:bg-slate-100 transition-colors duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="account_circle">account_circle</span>
+<span class="font-body-lg text-body-lg">Account</span>
+</a>
+</nav>
+</aside>
+<!-- Main Content Canvas -->
+<main class="flex-1 md:ml-80 pt-4 md:pt-stack-lg px-margin-mobile md:px-gutter pb-24 md:pb-stack-lg overflow-y-auto w-full max-w-container-max mx-auto flex flex-col items-center relative">
+<div class="absolute inset-0 bg-gradient-to-b from-sky-100 via-white to-sky-50 -z-10 pointer-events-none"></div>
+<div class="w-full max-w-[800px] flex flex-col gap-stack-lg">
+<section class="flex flex-col gap-stack-sm text-center md:text-left">
+<h1 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-slate-900">Model Management</h1>
+<p class="font-body-lg text-body-lg text-slate-600">Manage your local AI models for complete privacy and offline capability.</p>
+</section>
+<!-- Storage & Model Card Bento Layout -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+<!-- Active Model Card (Glassmorphism inspired clean card) -->
+<div class="bg-white/50 backdrop-blur-2xl rounded-xl p-6 shadow-xl border border-white/60 flex flex-col gap-6 relative overflow-hidden group hover:shadow-[0px_12px_32px_rgba(125,211,252,0.15)] transition-shadow duration-300 md:col-span-12">
+<div class="absolute top-0 right-0 w-32 h-32 bg-sky-200/30 rounded-bl-full -mr-10 -mt-10 transition-transform group-hover:scale-110 duration-500 blur-2xl"></div>
+<div class="flex justify-between items-start z-10">
+<div class="flex items-center gap-3">
+<div class="w-12 h-12 rounded-full bg-sky-100 border border-sky-200/50 flex items-center justify-center text-sky-600">
+<span class="material-symbols-outlined icon-fill" data-icon="shield" data-weight="fill">medical_services</span>
+</div>
+<div>
+<h3 class="font-headline-md text-headline-md text-slate-900">MedicAI Core V1.2</h3>
+<p class="font-label-caps text-label-caps text-sky-600 mt-1">.LITERTLM FORMAT</p>
+</div>
+</div>
+<div class="bg-white/80 backdrop-blur-md flex items-center gap-2 px-3 py-1.5 rounded-full border border-slate-200/50 shadow-sm">
+<div class="w-2 h-2 rounded-full bg-sky-400 shadow-[0_0_8px_#38bdf8]"></div> <!-- Exception for status indicator color dot -->
+<span class="font-body-sm text-body-sm text-slate-800 font-semibold">Model Downloaded</span>
+</div>
+</div>
+<div class="z-10 bg-white/60 backdrop-blur-sm p-4 rounded-lg border border-white/80 shadow-sm">
+<p class="font-body-sm text-body-sm text-slate-700">
+                            This local model enables <strong>100% private, offline medical AI</strong>. Your prompts and data never leave this device, ensuring complete confidentiality while maintaining high-performance inference.
+                        </p>
+</div>
+<div class="flex justify-between items-center z-10 pt-2 border-t border-slate-200/50">
+<div class="flex flex-col">
+<span class="font-label-caps text-label-caps text-slate-500">STORAGE USED</span>
+<span class="font-headline-md text-headline-md text-sky-700">3.0 GB</span>
+</div>
+<button class="flex items-center gap-2 px-4 py-2 rounded-lg text-red-600 bg-white/60 backdrop-blur-md border border-white/80 shadow-sm hover:bg-red-50 hover:text-red-700 transition-colors duration-200">
+<span class="material-symbols-outlined" data-icon="delete">delete</span>
+<span class="font-button-text text-button-text">Delete Model</span>
+</button>
+</div>
+</div>
+<!-- Storage Breakdown Side Card -->
+
+</div>
+</div>
+</main>
+<!-- BottomNavBar (Mobile Only) -->
+
+
+
+</body></html>

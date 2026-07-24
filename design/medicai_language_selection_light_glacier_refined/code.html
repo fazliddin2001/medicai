@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>MedicAI - Select Language</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+                "on-primary": "#001f2e",
+                "surface-container-low": "#111828",
+                "inverse-on-surface": "#0a0e1a",
+                "on-tertiary-fixed-variant": "#4d2a73",
+                "surface-bright": "#1a2438",
+                "on-primary-container": "#c8eaff",
+                "on-secondary-container": "#c0d8e8",
+                "surface": "#0f1524",
+                "secondary-container": "#1a3a4e",
+                "on-error": "#1a0000",
+                "error-container": "#3d1414",
+                "on-primary-fixed-variant": "#004d73",
+                "on-secondary": "#001f2e",
+                "surface-container-lowest": "#0a0e1a",
+                "on-tertiary": "#1a002e",
+                "on-secondary-fixed": "#0d1f2b",
+                "inverse-surface": "#e0e8f0",
+                "inverse-primary": "#0a4c6e",
+                "secondary": "#88b4cc",
+                "primary-fixed-dim": "#7dd3fc",
+                "on-tertiary-container": "#e8d0ff",
+                "tertiary": "#c8a0f0",
+                "primary-fixed": "#c8eaff",
+                "on-surface-variant": "#a0b4c4",
+                "tertiary-fixed": "#e8d0ff",
+                "on-primary-fixed": "#001f2e",
+                "surface-tint": "#7dd3fc",
+                "outline": "#4a6070",
+                "on-surface": "#e0e8f0",
+                "surface-container-high": "#1a2438",
+                "outline-variant": "#2a3a48",
+                "on-error-container": "#ffb3b3",
+                "surface-variant": "#1a2438",
+                "secondary-fixed": "#c0d8e8",
+                "error": "#ff6b6b",
+                "tertiary-container": "#3d2060",
+                "surface-container-highest": "#202c42",
+                "surface-dim": "#0f1524",
+                "on-background": "#e0e8f0",
+                "background": "#0a0e1a",
+                "tertiary-fixed-dim": "#c8a0f0",
+                "surface-container": "#141c2e",
+                "on-secondary-fixed-variant": "#2a4a5e",
+                "secondary-fixed-dim": "#88b4cc",
+                "on-tertiary-fixed": "#1a002e",
+                "primary": "#7dd3fc",
+                "primary-container": "#0e4d6e"
+        },
+        "borderRadius": {
+                "DEFAULT": "0.5rem",
+                "lg": "1rem",
+                "xl": "1.5rem",
+                "full": "9999px"
+        },
+        "spacing": {},
+        "fontFamily": {
+                "headline": [
+                        "Inter"
+                ],
+                "display": [
+                        "Inter"
+                ],
+                "body": [
+                        "Inter"
+                ],
+                "label": [
+                        "Inter"
+                ]
+        },
+        "fontSize": {}
+},
+    },
+  }
+</script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f8ff;
+            color: #001f2e;
+        }
+        
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(125, 211, 252, 0.3);
+        }
+
+        .glass-panel-elevated {
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 0 8px 32px 0 rgba(0, 31, 46, 0.05);
+        }
+
+        .glow-effect {
+            box-shadow: 0 0 40px rgba(125, 211, 252, 0.15);
+        }
+        
+        .radio-custom:checked + div {
+            border-color: rgba(125, 211, 252, 0.8);
+            background: rgba(125, 211, 252, 0.15);
+        }
+
+        .radio-custom:checked + div .check-icon {
+            opacity: 1;
+            transform: scale(1);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="min-h-screen flex items-center justify-center relative overflow-hidden bg-[#f0f8ff]">
+<!-- Atmospheric Background Glow -->
+<div class="absolute inset-0 z-0 pointer-events-none">
+<div class="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/20 rounded-full blur-3xl opacity-50 mix-blend-multiply"></div>
+<div class="absolute bottom-1/4 right-1/4 w-[30rem] h-[30rem] bg-secondary/10 rounded-full blur-3xl opacity-50 mix-blend-multiply"></div>
+</div>
+<!-- Modal Container -->
+<div class="relative z-10 w-full max-w-md mx-4 glass-panel-elevated rounded-2xl p-8 glow-effect">
+<!-- Header -->
+<div class="text-center mb-8">
+<h1 class="text-2xl font-headline font-semibold text-[#001f2e] tracking-tight">Select Language</h1>
+<p class="text-[#2a4a5e] mt-2 font-body text-sm">Choose your preferred language for MedicAI</p>
+</div>
+<!-- Language Options Form -->
+<form class="space-y-4" id="languageForm">
+<!-- Option: English -->
+<label class="block relative cursor-pointer group">
+<input checked="" class="peer sr-only radio-custom" name="language" type="radio" value="en"/>
+<div class="w-full glass-panel rounded-xl p-4 flex items-center justify-between border border-transparent transition-all duration-300 group-hover:bg-white/50">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-white flex items-center justify-center text-[#0a4c6e] font-medium text-sm border border-primary/20 shadow-sm">
+                            EN
+                        </div>
+<span class="font-body text-[#001f2e] font-medium text-lg">English</span>
+</div>
+<div class="w-6 h-6 rounded-full border border-[#a0b4c4] flex items-center justify-center transition-colors peer-checked:border-[#0a4c6e]">
+<span class="material-symbols-outlined check-icon text-[#0a4c6e] text-[18px] opacity-0 scale-50 transition-all duration-300" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+</div>
+</label>
+<!-- Option: Russian -->
+<label class="block relative cursor-pointer group">
+<input class="peer sr-only radio-custom" name="language" type="radio" value="ru"/>
+<div class="w-full glass-panel rounded-xl p-4 flex items-center justify-between border border-transparent transition-all duration-300 group-hover:bg-white/50">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-white flex items-center justify-center text-[#0a4c6e] font-medium text-sm border border-primary/20 shadow-sm">
+                            RU
+                        </div>
+<span class="font-body text-[#001f2e] font-medium text-lg">Русский</span>
+</div>
+<div class="w-6 h-6 rounded-full border border-[#a0b4c4] flex items-center justify-center transition-colors peer-checked:border-[#0a4c6e]">
+<span class="material-symbols-outlined check-icon text-[#0a4c6e] text-[18px] opacity-0 scale-50 transition-all duration-300" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+</div>
+</label>
+<!-- Option: Uzbek -->
+<label class="block relative cursor-pointer group">
+<input class="peer sr-only radio-custom" name="language" type="radio" value="uz"/>
+<div class="w-full glass-panel rounded-xl p-4 flex items-center justify-between border border-transparent transition-all duration-300 group-hover:bg-white/50">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-white flex items-center justify-center text-[#0a4c6e] font-medium text-sm border border-primary/20 shadow-sm">
+                            UZ
+                        </div>
+<span class="font-body text-[#001f2e] font-medium text-lg">Oʻzbekcha</span>
+</div>
+<div class="w-6 h-6 rounded-full border border-[#a0b4c4] flex items-center justify-center transition-colors peer-checked:border-[#0a4c6e]">
+<span class="material-symbols-outlined check-icon text-[#0a4c6e] text-[18px] opacity-0 scale-50 transition-all duration-300" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+</div>
+</label>
+<!-- Actions -->
+<div class="pt-6 mt-4">
+<button class="w-full py-3.5 px-6 rounded-xl bg-[#0a4c6e] text-white font-semibold text-lg hover:bg-[#004d73] transition-all duration-300 flex items-center justify-center gap-2 group shadow-md shadow-[#0a4c6e]/20" type="button">
+<span>Confirm</span>
+<span class="material-symbols-outlined text-[20px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</button>
+</div>
+</form>
+</div>
+<script>
+        // Simple script to handle visual updates on selection
+        const radioInputs = document.querySelectorAll('input[type="radio"]');
+        
+        radioInputs.forEach(input => {
+            input.addEventListener('change', function() {
+                // Remove selected styling from all
+                document.querySelectorAll('.radio-custom + div').forEach(div => {
+                    div.classList.remove('border-primary/80', 'bg-primary/15');
+                    div.classList.add('border-transparent');
+                });
+                
+                // Add selected styling to active
+                if(this.checked) {
+                    const nextDiv = this.nextElementSibling;
+                    nextDiv.classList.remove('border-transparent');
+                    // Styling handled largely by CSS sibling selector, this is fallback/extra
+                }
+            });
+        });
+    </script>
+</body></html>

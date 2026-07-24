@@ -1,0 +1,2 @@
+- [x] Refine `.gitignore` file
+- [x] Provide instructions for GitHub upload

@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>MedicAI - Chat History</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+                "on-error-container": "#ffb3b3",
+                "tertiary-container": "#3d2060",
+                "surface-dim": "#f3f4f6",
+                "surface-container-low": "#f9fafb",
+                "on-surface": "#111827",
+                "on-primary-container": "#c8eaff",
+                "primary-fixed-dim": "#7dd3fc",
+                "on-background": "#111827",
+                "on-secondary-fixed-variant": "#2a4a5e",
+                "outline": "#e5e7eb",
+                "tertiary-fixed": "#e8d0ff",
+                "secondary": "#88b4cc",
+                "secondary-fixed-dim": "#88b4cc",
+                "tertiary": "#c8a0f0",
+                "on-tertiary-fixed": "#1a002e",
+                "background": "#f8fafc",
+                "surface-container-lowest": "#ffffff",
+                "on-primary-fixed": "#001f2e",
+                "secondary-container": "#1a3a4e",
+                "on-primary-fixed-variant": "#004d73",
+                "on-secondary-fixed": "#0d1f2b",
+                "inverse-surface": "#1f2937",
+                "error": "#ff6b6b",
+                "surface-tint": "#7dd3fc",
+                "tertiary-fixed-dim": "#c8a0f0",
+                "on-secondary-container": "#c0d8e8",
+                "surface-container-high": "#e5e7eb",
+                "on-tertiary": "#1a002e",
+                "on-tertiary-container": "#e8d0ff",
+                "surface-variant": "#f3f4f6",
+                "primary-fixed": "#c8eaff",
+                "surface-container-highest": "#d1d5db",
+                "primary": "#0369a1",
+                "outline-variant": "#d1d5db",
+                "surface-bright": "#ffffff",
+                "surface": "#ffffff",
+                "secondary-fixed": "#c0d8e8",
+                "on-tertiary-fixed-variant": "#4d2a73",
+                "inverse-primary": "#7dd3fc",
+                "inverse-on-surface": "#f9fafb",
+                "error-container": "#3d1414",
+                "primary-container": "#e0f2fe",
+                "on-error": "#ffffff",
+                "on-surface-variant": "#4b5563",
+                "on-secondary": "#001f2e",
+                "on-primary": "#ffffff",
+                "surface-container": "#f3f4f6"
+        },
+        "borderRadius": {
+                "DEFAULT": "0.5rem",
+                "lg": "1rem",
+                "xl": "1.5rem",
+                "full": "9999px"
+        },
+        "spacing": {},
+        "fontFamily": {
+                "headline": [
+                        "Inter"
+                ],
+                "display": [
+                        "Inter"
+                ],
+                "body": [
+                        "Inter"
+                ],
+                "label": [
+                        "Inter"
+                ]
+        },
+        "fontSize": {}
+},
+    },
+  }
+</script>
+<style>
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+        }
+        .glass-panel-elevated {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -2px rgba(0, 0, 0, 0.04);
+        }
+        .glow-hover:hover {
+            box-shadow: 0 10px 25px -5px rgba(125, 211, 252, 0.15), 0 8px 10px -6px rgba(125, 211, 252, 0.1);
+            border-color: rgba(125, 211, 252, 0.4);
+            background: rgba(255, 255, 255, 0.9);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-background text-on-background font-body min-h-screen flex flex-col antialiased selection:bg-primary selection:text-on-primary">
+<!-- TopAppBar -->
+<header class="bg-background dark:bg-background border-b border-outline-variant dark:border-outline flex justify-between items-center px-4 md:px-6 w-full h-16 sticky top-0 z-40">
+<div class="flex items-center gap-4">
+<button aria-label="Menu" class="text-on-surface-variant dark:text-on-secondary-container hover:bg-surface-container-low dark:hover:bg-surface-container-highest transition-colors duration-200 p-2 rounded-full hidden md:flex">
+<span class="material-symbols-outlined" data-icon="menu">menu</span>
+</button>
+<h1 class="font-headline-md text-headline-md font-bold text-on-surface dark:text-on-background tracking-tight">Guardian Oracle</h1>
+</div>
+<!-- Search Bar (Desktop) -->
+<div class="hidden md:flex flex-1 max-w-xl mx-8">
+<div class="relative w-full group">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant group-focus-within:text-primary transition-colors" data-icon="search">search</span>
+<input class="w-full bg-surface-container border border-outline-variant rounded-full py-2 pl-10 pr-4 text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/50 transition-all placeholder:text-on-surface-variant/50" placeholder="Search history..." type="text"/>
+</div>
+</div>
+<button aria-label="Language" class="text-on-surface-variant dark:text-on-secondary-container hover:bg-surface-container-low dark:hover:bg-surface-container-highest transition-colors duration-200 p-2 rounded-full">
+<span class="material-symbols-outlined" data-icon="language">language</span>
+</button>
+</header>
+<div class="flex flex-1 overflow-hidden">
+<!-- NavigationDrawer (Desktop) -->
+<aside class="hidden md:flex flex-col p-4 w-80 rounded-r-xl shadow-lg dark:shadow-none bg-surface dark:bg-surface-container-low sticky top-16 h-[calc(100vh-4rem)] z-30 overflow-y-auto">
+<div class="flex items-center gap-3 mb-8 px-2">
+<div class="w-12 h-12 rounded-full overflow-hidden border border-outline-variant">
+<img alt="User profile photo" class="w-full h-full object-cover" data-alt="A macro shot of a sleek, abstract metallic sphere floating in a dark, atmospheric void. Cool blue lighting highlights its curved surface, evoking a sense of advanced technology and privacy. High-contrast, premium dark mode aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDoUkmv51VnuZXtvdekP3twAXyLEFOHeJe7rSBIMTX9Wf3uu3AfTZjxknDoW7MyWkYLi5OGY7LrT7ss7teuwjLg-0VnJl7uFvr5qIAM4D0bzWAL8rlEivhmtwABT7fk-wggwBKjC8ZRBcQQr4X9JLByH5DT1-P5a5yIrE0P2dKXAxtkBMa_42zHuj74oNKyu2DrbeKfJhnmVVuv2jP7KlRy4JJ8SVS6BVWKjXA1iRX8Gf_rCIe_3f-Qp9YR6iKYiv61SJ0sAfsTYAs"/>
+</div>
+<div>
+<h2 class="font-headline-md text-headline-md text-on-surface dark:text-on-background font-semibold">Dr. Sarah Chen</h2>
+<p class="text-xs text-on-surface-variant">Privacy Level: High</p>
+<p class="text-xs text-on-surface-variant">Local Model: V1.2</p>
+</div>
+</div>
+<nav class="flex-1 space-y-2">
+<a class="flex items-center gap-3 px-4 py-3 bg-primary-container dark:bg-primary-container text-on-surface dark:text-on-primary-container font-bold rounded-full transition-all duration-300 ease-in-out" href="#">
+<span class="material-symbols-outlined text-primary" data-icon="history" style="font-variation-settings: 'FILL' 1;">history</span>
+<span>Chat History</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant dark:text-outline hover:bg-surface-container-high dark:hover:bg-surface-container-highest rounded-full transition-all duration-300 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="Memory">cloud_download</span>
+<span>Model Management</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant dark:text-outline hover:bg-surface-container-high dark:hover:bg-surface-container-highest rounded-full transition-all duration-300 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="account_circle">account_circle</span>
+<span>Account</span>
+</a>
+</nav>
+</aside>
+<!-- Main Content -->
+<main class="flex-1 flex flex-col max-w-4xl mx-auto w-full p-4 md:p-8 pb-24 md:pb-8 overflow-y-auto">
+<!-- Mobile Search Bar -->
+<div class="md:hidden relative w-full mb-6 group">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant group-focus-within:text-primary transition-colors" data-icon="search">search</span>
+<input class="w-full glass-panel rounded-full py-3 pl-10 pr-4 text-on-surface focus:outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/20 transition-all placeholder:text-on-surface-variant/70" placeholder="Search history..." type="text"/>
+</div>
+<!-- History List -->
+<div class="space-y-8">
+<!-- Group: Today -->
+<section>
+<h3 class="text-sm font-semibold tracking-wider text-primary mb-4 uppercase ml-2">Today</h3>
+<div class="space-y-3">
+<!-- Item 1 -->
+<a class="block glass-panel rounded-xl p-4 glow-hover transition-all duration-300 group" href="#">
+<div class="flex items-start justify-between gap-4">
+<div class="flex-1 min-w-0">
+<h4 class="font-semibold text-on-surface truncate group-hover:text-primary transition-colors">Patient X-Ray Analysis Consultation</h4>
+<p class="text-sm text-on-surface-variant mt-1 line-clamp-2">Reviewing the anterior-posterior view of the thoracic region. The subtle opacity in the right lower lobe warrants further investigation regarding potential early-stage pneumonia or atelectasis.</p>
+</div>
+<div class="flex flex-col items-end gap-2 shrink-0">
+<span class="text-xs text-on-surface-variant">14:32</span>
+<div class="flex items-center gap-1 bg-surface-container px-2 py-1 rounded-md border border-outline-variant/30 text-primary" title="Private Mode">
+<span class="material-symbols-outlined text-[16px]" data-icon="lock">lock</span>
+<span class="text-[10px] font-semibold tracking-wider uppercase">Local</span>
+</div>
+</div>
+</div>
+</a>
+<!-- Item 2 -->
+<a class="block glass-panel rounded-xl p-4 glow-hover transition-all duration-300 group" href="#">
+<div class="flex items-start justify-between gap-4">
+<div class="flex-1 min-w-0">
+<h4 class="font-semibold text-on-surface truncate group-hover:text-primary transition-colors">Latest Cardiology Guidelines Summary</h4>
+<p class="text-sm text-on-surface-variant mt-1 line-clamp-2">Summarize the 2024 ESC guidelines for the management of elevated blood pressure and hypertension. Focus specifically on the updated pharmacological treatment algorithms.</p>
+</div>
+<div class="flex flex-col items-end gap-2 shrink-0">
+<span class="text-xs text-on-surface-variant">09:15</span>
+<div class="flex items-center gap-1 bg-primary-container px-2 py-1 rounded-md border border-primary/20 text-primary" title="Cloud Mode">
+<span class="material-symbols-outlined text-[16px]" data-icon="cloud">cloud</span>
+<span class="text-[10px] font-semibold tracking-wider uppercase">Cloud</span>
+</div>
+</div>
+</div>
+</a>
+</div>
+</section>
+<!-- Group: Yesterday -->
+<section>
+<div class="flex items-center gap-4 mb-4 ml-2">
+<h3 class="text-sm font-semibold tracking-wider text-on-surface-variant uppercase">Yesterday</h3>
+<div class="h-px bg-outline-variant flex-1"></div>
+</div>
+<div class="space-y-3">
+<!-- Item 3 -->
+<a class="block glass-panel rounded-xl p-4 glow-hover transition-all duration-300 group opacity-80 hover:opacity-100" href="#">
+<div class="flex items-start justify-between gap-4">
+<div class="flex-1 min-w-0">
+<h4 class="font-semibold text-on-surface truncate group-hover:text-primary transition-colors">Drug Interaction Check</h4>
+<p class="text-sm text-on-surface-variant mt-1 line-clamp-2">Checking potential interactions between Rivaroxaban 20mg daily and newly prescribed Clarithromycin 500mg BID for a 65-year-old patient with normal renal function.</p>
+</div>
+<div class="flex flex-col items-end gap-2 shrink-0">
+<span class="text-xs text-on-surface-variant">16:45</span>
+<div class="flex items-center gap-1 bg-surface-container px-2 py-1 rounded-md border border-outline-variant/30 text-primary" title="Private Mode">
+<span class="material-symbols-outlined text-[16px]" data-icon="lock">lock</span>
+<span class="text-[10px] font-semibold tracking-wider uppercase">Local</span>
+</div>
+</div>
+</div>
+</a>
+</div>
+</section>
+</div>
+</main>
+</div>
+<!-- BottomNavBar (Mobile) -->
+<nav class="md:hidden fixed bottom-0 w-full z-50 flex justify-around items-center h-16 px-4 pb-safe bg-surface dark:bg-surface-container border-t border-outline-variant dark:border-outline shadow-md">
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline px-6 py-1 hover:bg-surface-container-high dark:hover:bg-surface-dim scale-95 transition-transform duration-150">
+<span class="material-symbols-outlined" data-icon="shield">shield</span>
+<span class="font-label-caps text-[10px] mt-1">Guardian</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline px-6 py-1 hover:bg-surface-container-high dark:hover:bg-surface-dim scale-95 transition-transform duration-150">
+<span class="material-symbols-outlined" data-icon="cloud">cloud</span>
+<span class="font-label-caps text-[10px] mt-1">Oracle</span>
+</button>
+<!-- Added History tab for mobile contextual navigation, active state -->
+<button class="flex flex-col items-center justify-center bg-primary-container dark:bg-secondary-container text-on-surface dark:text-on-secondary-container rounded-xl px-6 py-1 scale-95 transition-transform duration-150">
+<span class="material-symbols-outlined text-primary" data-icon="history" style="font-variation-settings: 'FILL' 1;">history</span>
+<span class="font-label-caps text-[10px] mt-1 text-primary">History</span>
+</button>
+</nav>
+</body></html>
