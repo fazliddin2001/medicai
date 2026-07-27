@@ -2,6 +2,19 @@
 
 **MedicAI** is a next-generation, privacy-first medical AI assistant built with Flutter. It features a unique **hybrid intelligence architecture**, allowing users to seamlessly toggle between a lightning-fast Cloud API and a **100% offline, private on-device AI engine** (LiteRTLM). 
 
+## 📥 Download & Install (Android)
+
+You can download the compiled Android APK directly from our GitHub Releases page.
+
+1. Go to the [Releases Page](https://github.com/fazliddin2001/medicai/releases/latest) (update this link after your first release).
+2. Download the `app-release.apk` file under the **Assets** section.
+3. Open the downloaded `.apk` file on your Android device.
+4. If prompted, allow your browser or file manager to **"Install from Unknown Sources"**.
+5. Tap **Install** and open the app!
+
+*(Note: Google Play Protect may show a warning for unverified apps. Tap "More details" and "Install anyway" to proceed safely).*
+
+
 Designed with clinical transparency, data security, and modern aesthetics in mind.
 
 ---
