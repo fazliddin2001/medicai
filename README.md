@@ -76,8 +76,8 @@ flutter build apk --release
 
 ## 🔒 Privacy & Data
 
-- **Cloud Mode**: Medical data is sent over a secure connection to the specified Gateway URL. Token limits are enforced client-side.
-- **Local Mode**: The application sandbox securely stores the downloaded `.litertlm` binary file in `/data/user/0/...` ensuring other apps cannot access it. All inference happens strictly on the CPU/GPU of the local device.
+- **Cloud Mode**: Medical data is sent over a secure connection to the specified Gateway URL.
+- **Local Mode**: All inference happens strictly on the CPU/GPU of the local device.
 
 ---
 
