@@ -1,6 +1,6 @@
 # MedicAI 🩺🤖
 
-**MedicAI** is a next-generation, privacy-first medical AI assistant built with Flutter. It features a unique **hybrid intelligence architecture**, allowing users to seamlessly toggle between a lightning-fast Cloud API (Gemini) and a **100% offline, private on-device AI engine** (LiteRTLM). 
+**MedicAI** is a next-generation, privacy-first medical AI assistant built with Flutter. It features a unique **hybrid intelligence architecture**, allowing users to seamlessly toggle between a lightning-fast Cloud API and a **100% offline, private on-device AI engine** (LiteRTLM). 
 
 Designed with clinical transparency, data security, and modern aesthetics in mind.
 
@@ -9,9 +9,9 @@ Designed with clinical transparency, data security, and modern aesthetics in min
 ## ✨ Key Features
 
 - **Hybrid AI Engine**: Switch between Cloud AI for expansive, complex queries, and Local AI for strict, offline privacy.
-- **100% Private Local Inference**: Built-in model manager allows users to securely download and run a ~2.8GB medical language model entirely on-device. No internet connection required. Your medical data never leaves your phone.
+- **100% Private Local Inference**: Built-in model manager allows users to securely download and run a medical language model entirely on-device. No internet connection required. Your medical data never leaves your phone.
 - **Transparent Reasoning Traces**: Medical advice requires trust. MedicAI visually separates the model's "inner thoughts" (reasoning process) from the final clinical answer, allowing you to see exactly how the AI reached its conclusion.
-- **Cost-Controlled Cloud API**: When using the Cloud API (`gemini-3.5-flash-lite`), the app implements smart token guards—automatically limiting context windows and restricting chats to a maximum of 2 queries per session to prevent token explosion.
+- **Cost-Controlled Cloud API**: When using the Cloud API, the app implements smart token guards—automatically limiting context windows and restricting chats to a maximum of 2 queries per session to prevent token explosion.
 - **Multimodal Chat Interface**: Supports attaching images and audio recordings (Cloud Mode) for natural, comprehensive diagnostic queries.
 - **Full Multilingual Support**: Natively localized in **English**, **Russian**, and **Uzbek**.
 - **Modern UI/UX**: Built with fluid animations, dynamic markdown rendering, and a premium glassmorphism aesthetic.
@@ -22,7 +22,7 @@ Designed with clinical transparency, data security, and modern aesthetics in min
 
 - **Framework**: Flutter (Dart)
 - **Local Engine**: LiteRT (TensorFlow Lite) / Google ML Kit bindings for on-device generative AI.
-- **Cloud Engine**: Google Gemini API (`gemini-3.5-flash-lite`) integrated via Dio.
+- **Cloud Engine**: Google Gemini API integrated via Dio.
 - **Local Storage**: Drift (SQLite) for persistent, localized conversation history.
 - **State Management**: `Provider` architecture for reactive UI updates across the chat, settings, and model management screens.
 
